@@ -10,14 +10,6 @@ module.exports = {
     "@babel/preset-typescript",
   ],
   plugins: [
-    [
-      // 按需引入 antd 样式
-      "import",
-      {
-        "libraryName": "antd",
-        "libraryDirectory": "es",
-        "style": true
-      }
-    ],
+    "@emotion"
   ],
 };

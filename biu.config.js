@@ -24,6 +24,6 @@ module.exports = {
   // 主机地址
   devServerHost: "",
   // devServer 默认端口号
-  devServerPort: 3000,
+  devServerPort: 8080,
   // mockServerPort: 8000,
 };
