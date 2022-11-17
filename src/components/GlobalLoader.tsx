@@ -1,14 +1,16 @@
-import { cx, css } from "@emotion/css";
+import { css } from "@emotion/css";
 
 import { Loader } from "./styled";
-
 
 const GlobalLoader = () => {
   return (
     <Loader
-      className={cx("absolute top-2 right-2 text-2xl opacity-100", css`
+      className={css`
+        position: absolute;
+        top: 8px;
+        right: 8px;
         transition: 0.3s ease;
-      `)}
+      `}
     />
   );
 };

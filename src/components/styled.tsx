@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
-import { css, keyframes } from "@emotion/css";
+import { css, cx, keyframes } from "@emotion/css";
 import { ImSpinner9 } from "react-icons/im";
 import { IconBaseProps } from "react-icons/lib";
+import { Link } from "react-router-dom";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -22,9 +23,9 @@ export const Main = styled.div`
   padding: 1rem;
 `;
 
-export const PostStyles = styled.div`
+export const PostStyles = styled(Link)`
   display: inline-block;
-  border: inline-block;
+  border: solid 1px rgba(130, 130, 130, 0.3);
   padding: 1rem;
   color: inherit;
 
@@ -49,10 +50,11 @@ export const Loader = (props: IconBaseProps) => {
   return (
     <ImSpinner9
       {...props}
-      className={css`
+      css={css`
         vertical-align: middle;
         animation: ${rotate} 1s linear infinite;
-      `}
+      `
+      }
     />
   );
 }

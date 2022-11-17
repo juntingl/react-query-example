@@ -13,11 +13,11 @@ module.exports = {
    * 配置代理
    **/
   proxy: {
-    // "/api": {
-    //   target: "",
-    //   changeOrigin: true,
-    //   rewrite: (p) => p.replace(/^\/api/, ""),
-    // },
+    "/api": {
+      target: "http://localhost:3000",
+      changeOrigin: true,
+      pathRewrite: (p) => p.replace(/^\/api/, ""),
+    },
   },
   // 是否默认打开浏览器
   autoOpenBrowser: true,

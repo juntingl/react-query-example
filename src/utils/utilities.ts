@@ -29,3 +29,7 @@ export const typeOf = (data: any) => {
     toString.call(data) as keyof typeof map
   ];
 };
+
+export function sleep(time: number = 1000) {
+  return new Promise((resolve) => setTimeout(resolve, time))
+}
