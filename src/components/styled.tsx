@@ -46,14 +46,18 @@ const rotate = keyframes`
     transform: rotate(360deg);
   }
 `;
-export const Loader = (props: IconBaseProps) => {
+export const Loader = (props: IconBaseProps & { css?: string }) => {
   return (
     <ImSpinner9
       {...props}
-      css={css`
-        vertical-align: middle;
-        animation: ${rotate} 1s linear infinite;
-      `
+      className={
+        cx(
+          props?.className,
+          css`
+            vertical-align: middle;
+            animation: ${rotate} 1s linear infinite;
+          `
+        )
       }
     />
   );
