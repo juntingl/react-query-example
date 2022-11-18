@@ -34,8 +34,8 @@ export default function AdminPostQuery () {
         </span>
       ) : (
         <div>
-          <div className="flex items-center w-full gap-4">
-            <h3>{postQuery.data.title}</h3>
+          <div className="flex items-center w-full gap-4 mb-4">
+            <h3 className="text-2xl font-bol">{postQuery.data.title}</h3>
             <div>
               <Link to={`/posts/${postQuery.data.id}`} className="text-blue-500 hover:underline">View Post</Link>
             </div>

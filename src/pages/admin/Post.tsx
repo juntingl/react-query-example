@@ -35,8 +35,8 @@ export default function Post() {
         </span>
       ) : (
         <div>
-          <div className="flex items-center w-full gap-4">
-            <h3>{postQuery.data.title}</h3>
+          <div className="flex items-center w-full gap-4 mb-4">
+            <h3 className="text-2xl font-bold">{postQuery.data.title}</h3>
 
             <div className="">
               <Link to={`/posts/${postQuery.data.id}`} className="text-blue-500 hover:underline">View Post</Link>
