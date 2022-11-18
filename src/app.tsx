@@ -1,14 +1,22 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useIsFetching } from "@tanstack/react-query";
 
 import { Main, Wrapper } from "./components/styled";
 import SideBar from "./components/Sidebar";
 import HomePage from "./pages/HomePage";
+import GlobalLoader from "./components/GlobalLoader";
+
 import Posts from "./pages/blog";
 import Post from "./pages/blog/Post";
+
+import PostsQuery from "./pages/blog/PostsQuery";
+import PostQuery from "./pages/blog/PostQuery";
+
 import Admin from "./pages/admin";
 import AdminPost from "./pages/admin/Post";
-import GlobalLoader from "./components/GlobalLoader";
-import { useIsFetching } from "@tanstack/react-query";
+
+import AdminQuery from "./pages/admin/index-query";
+import AdminPostQuery from "./pages/admin/PostQuery";
 
 const App = () => {
   const isFetching = useIsFetching();
@@ -24,8 +32,15 @@ const App = () => {
             <Route path="/" element={<HomePage />} />
             <Route path="/posts" element={<Posts />} />
             <Route path="/posts/:postId" element={<Post />} />
+
+            <Route path="/react-query/posts" element={<PostsQuery />} />
+            <Route path="/react-query/posts/:postId" element={<PostQuery />} />
+
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/:postId" element={<AdminPost />} />
+
+            <Route path="/react-query/admin" element={<AdminQuery />} />
+            <Route path="/react-query/admin/:postId" element={<AdminPostQuery />} />
           </Routes>
         </Main>
       </Wrapper>
