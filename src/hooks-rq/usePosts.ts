@@ -1,6 +1,17 @@
 import { sleep } from '@/utils/utilities';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+export interface PostsArgs {
+  current: number;
+  pageSize: number;
+}
+
+export interface Post {
+  userId: number
+  id: number
+  title: string
+  body: string
+}
 
 /**
  * 分页逻辑
@@ -25,11 +36,6 @@ const paginationLogic = (data = [], current = 1, pageSize = 10) => {
     total
   }
 };
-
-export interface PostsArgs {
-  current: number;
-  pageSize: number;
-}
 
 export const fetchPosts = async (args: any) => {
   await sleep(2000);

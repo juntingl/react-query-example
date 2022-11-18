@@ -4,12 +4,17 @@ import { Link } from 'react-router-dom'
 import PostForm from '@/components/PostForm';
 import { Loader } from '@/components/styled';
 
-import usePosts from '@/hooks-rq/usePosts';
+import usePosts, { PostsArgs } from '@/hooks-rq/usePosts';
 import useCreatePost from '@/hooks-rq/useCreatePost';
+
+const initialState: PostsArgs = {
+  current: 1,
+  pageSize: 12
+}
 
 export default function AdminPostsQuery() {
   const { data: posts, isLoading, refetch } = usePosts();
-  const [createPost, createPostInfo] = useCreatePost();
+  const { mutate: createPost, isLoading: isCreateLoading, isSuccess, isError } = useCreatePost();
 
   const onSubmit = async (values: any) => {
     await createPost(values)
@@ -45,11 +50,11 @@ export default function AdminPostsQuery() {
             onSubmit={onSubmit}
             clearOnSubmit={true}
             submitText={
-              createPostInfo.isLoading
+              isCreateLoading
                 ? 'Saving...'
-                : createPostInfo.isError
+                : isError
                 ? 'Error!'
-                : createPostInfo.isSuccess
+                : isSuccess
                 ? 'Saved!'
                 : 'Create Post'
             }

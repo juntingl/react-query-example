@@ -46,7 +46,7 @@ const usePosts = (args?: PostsArgs) => {
   const fetch = async () => {
     setState({ isLoading: true })
     try {
-      const data = await axios.get("/api/posts").then(res => res.data);
+      const data = await fetchPosts(args);
       setState({ isSuccess: false, data })
     } catch(error) {
       setState({ isError: true, error })

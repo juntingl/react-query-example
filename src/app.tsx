@@ -27,7 +27,9 @@ const App = () => {
         <SideBar />
 
         <Main className="relative overflow-y-auto bg-slate-50 overflow-hidden scrollbar:!w-1.5 scrollbar:!h-1.5 scrollbar:bg-transparent scrollbar-track:!bg-slate-100 scrollbar-thumb:!rounded scrollbar-thumb:!bg-slate-300 scrollbar-track:!rounded">
+
           { isFetching ? <GlobalLoader /> : null }
+
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/posts" element={<Posts />} />

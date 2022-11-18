@@ -8,18 +8,19 @@ import usePosts from '@/hooks/usePosts';
 import useCreatePost from '@/hooks/useCreatePost';
 
 export default function Posts() {
-  const postQuery = usePosts();
+  const { data: posts, isLoading, isError, error, refetch } = usePosts();
+
   const [createPost, createPostInfo] = useCreatePost();
 
   const onSubmit = async (values: any) => {
     await createPost(values)
-    postQuery.refetch()
+    refetch?.()
   }
 
   return (
     <section className='flex h-full divide-x'>
       <div className="flex-1">
-        {postQuery.isLoading ? (
+        {isLoading ? (
           <div className="flex items-center">
             <Loader /> <span className="ml-2">Loading...</span>
           </div>
@@ -27,7 +28,7 @@ export default function Posts() {
           <>
             <h3>Posts</h3>
             <ul>
-              {postQuery?.data.map((post: any, index: number) => (
+              {posts?.data.map((post: any, index: number) => (
                 <li key={post.id}>
                   <Link to={`./${post.id}`}>{index+1}、{post.title}</Link>
                 </li>

@@ -3,7 +3,7 @@ import usePost from '@/hooks-rq/usePost';
 
 const PostQuery = () => {
   const { postId } = useParams();
-  const postQuery = usePost(postId || "");
+  const postQuery = usePost(postId);
 
   return (
     <>

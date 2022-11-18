@@ -1,20 +1,6 @@
-import React, { useCallback } from 'react'
+import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 
 export default function useCreatePost() {
-  const [state, setState] = React.useReducer((_: any, action: any) => action, {
-    isIdle: true,
-  })
-
-  const mutate = useCallback(async (values: any) => {
-    setState({ isLoading: true })
-    try {
-      const data = axios.post('/api/posts', values).then((res) => res.data)
-      setState({ isSuccess: true, data })
-    } catch (error) {
-      setState({ isError: true, error })
-    }
-  }, [])
-
-  return [mutate, state]
+  return useMutation((post) => axios.post('/api/posts', post).then((res) => res.data))
 }

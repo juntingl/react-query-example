@@ -1,6 +1,6 @@
 import { Link, useNavigate, useParams } from 'react-router-dom'
 
-import useDeletePost from '@/hooks/useDeletePost'
+import useDeletePost from '@/hooks-rq/useDeletePost'
 import usePost from '@/hooks-rq/usePost'
 import useSavePost from '@/hooks-rq/useSavePost'
 
@@ -12,9 +12,9 @@ export default function AdminPostQuery () {
   const { postId } = useParams()
   const navigate = useNavigate()
 
-  const postQuery = usePost(postId || "")
-  const [savePost, savePostInfo] = useSavePost()
-  const [deletePost, deletePostInfo] = useDeletePost()
+  const postQuery = usePost(postId);
+  const {mutate: savePost, isLoading: isSaveLoading, isError: isSaveError, isSuccess: isSaveSuccess } = useSavePost();
+  const { mutate: deletePost, isLoading: isDelLoading, isError: isDelError, isSuccess: isDelSuccess } = useDeletePost();
 
   const onSubmit = async (values: any) => {
     await savePost(values)
@@ -22,7 +22,7 @@ export default function AdminPostQuery () {
   }
 
   const onDelete = async () => {
-    await deletePost(postId)
+    await deletePost(postId || "")
     navigate('/admin')
   }
 
@@ -44,11 +44,11 @@ export default function AdminPostQuery () {
               onClick={onDelete}
               className="ml-auto bg-red-500 shadow-red-500/50"
             >
-              {deletePostInfo.isLoading
+              {isDelLoading
                 ? 'Deleting...'
-                : deletePostInfo.isError
+                : isDelError
                 ? 'Error!'
-                : deletePostInfo.isSuccess
+                : isDelSuccess
                 ? 'Deleted!'
                 : 'Delete Post'}
             </Button>
@@ -58,11 +58,11 @@ export default function AdminPostQuery () {
             initialValues={postQuery.data}
             onSubmit={onSubmit}
             submitText={
-              savePostInfo.isLoading
+              isSaveLoading
                 ? 'Saving...'
-                : savePostInfo.isError
+                : isSaveError
                 ? 'Error!'
-                : savePostInfo.isSuccess
+                : isSaveSuccess
                 ? 'Saved!'
                 : 'Save Post'
             }

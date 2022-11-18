@@ -33,7 +33,7 @@ const PostsQuery = () => {
             </div>
           ) : (
             posts?.data.map((post: any) => (
-              <PostStyles to={`/posts/${post.id}`} key={post.id} className="rounded-md shadow-md max-h-40">
+              <PostStyles to={`/react-query/posts/${post.id}`} key={post.id} className="rounded-md shadow-md max-h-40">
                 <h3 className="text-lg font-bold">{post.title}</h3>
                 <p className="inline-block overflow-hidden m-ellipsis">{post.body}</p>
               </PostStyles>

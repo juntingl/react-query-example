@@ -1,7 +1,13 @@
+import { sleep } from "@/utils/utilities";
 import axios from "axios";
 import { useCallback, useEffect, useReducer } from "react";
 
-const fetchPost = (postId: string) => axios.get(`/api/posts/${postId}`).then(res => res.data);
+const fetchPost = async (postId: string) => {
+  await sleep(2000);
+
+  const data = await axios.get(`/api/posts/${postId}`).then(res => res.data);
+  return data;
+}
 
 export default function usePost(postId: string) {
   const [state, setState] = useReducer((_: any, action: any) => action, {
