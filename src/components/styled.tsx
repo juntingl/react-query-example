@@ -35,6 +35,7 @@ export const PostStyles = styled(Link)`
       text-decoration: underline;
     }
   }
+
 `;
 
 const rotate = keyframes`

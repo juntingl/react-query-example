@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
 /**
  * 分页逻辑
@@ -14,7 +14,7 @@ const paginationLogic = (data = [], current = 1, pageSize = 10) => {
   const start = (current - 1) * pageSize;
   const end = start + pageSize;
 
-  const pageData = [...data].slice(start, end);
+  const pageData: any[] = [...data].slice(start, end);
 
   return {
     data: pageData,
@@ -30,13 +30,16 @@ export interface PostsArgs {
   pageSize: number;
 }
 
+export const fetchPosts = async (args: any) => {
+  const {data} = await axios.get("/api/posts");
+  return paginationLogic(data, args.current, args.pageSize);
+}
+
 const usePosts = (args: PostsArgs) => {
-  return useQuery(
-    ["posts", args],
-    (args) => axios.get("/api/posts", args).then(res => {
-      return paginationLogic(res.data)
-    })
-  )
+  return useQuery({
+    queryKey: ["posts", args],
+    queryFn: ({ queryKey: [key, reqArgs]}) => fetchPosts(reqArgs)
+  })
 };
 
 export default usePosts;

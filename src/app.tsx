@@ -22,8 +22,8 @@ const App = () => {
           { isFetching ? <GlobalLoader /> : null }
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/blog" element={<Posts />} />
-            <Route path="/blog/:postId" element={<Post />} />
+            <Route path="/posts" element={<Posts />} />
+            <Route path="/posts/:postId" element={<Post />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/:postId" element={<AdminPost />} />
           </Routes>
