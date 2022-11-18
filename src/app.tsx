@@ -32,13 +32,11 @@ const App = () => {
             <Route path="/" element={<HomePage />} />
             <Route path="/posts" element={<Posts />} />
             <Route path="/posts/:postId" element={<Post />} />
-
-            <Route path="/react-query/posts" element={<PostsQuery />} />
-            <Route path="/react-query/posts/:postId" element={<PostQuery />} />
-
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/:postId" element={<AdminPost />} />
 
+            <Route path="/react-query/posts" element={<PostsQuery />} />
+            <Route path="/react-query/posts/:postId" element={<PostQuery />} />
             <Route path="/react-query/admin" element={<AdminQuery />} />
             <Route path="/react-query/admin/:postId" element={<AdminPostQuery />} />
           </Routes>
