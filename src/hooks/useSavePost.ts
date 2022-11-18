@@ -1,8 +1,8 @@
-import React, { useCallback } from 'react'
 import axios from 'axios'
+import { useCallback, useReducer } from 'react'
 
 export default function useSavePost() {
-  const [state, setState] = React.useReducer((_: any, action: any) => action, {
+  const [state, setState] = useReducer((_: any, action: any) => action, {
     isIdle: true,
   })
 

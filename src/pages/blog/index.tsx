@@ -9,7 +9,7 @@ const initialState: PostsArgs = {
 }
 
 const Posts = () => {
-  const { data: posts, isLoading } = usePosts(initialState);
+  const postsQuery = usePosts(initialState);
 
   const handleChangePage = (e: React.BaseSyntheticEvent) => {
     e.preventDefault();
@@ -28,12 +28,12 @@ const Posts = () => {
         // `}
       >
         {
-            isLoading ? (
+            postsQuery.isLoading ? (
             <div className="flex items-center">
               <Loader /> <span className="ml-2">Loading...</span>
             </div>
           ) : (
-            posts?.data.map((post: any) => (
+            postsQuery?.data.map((post: any) => (
               <PostStyles to={`/posts/${post.id}`} key={post.id} className="rounded-md shadow-md max-h-40">
                 <h3 className="text-lg font-bold">{post.title}</h3>
                 <p className="inline-block overflow-hidden m-ellipsis">{post.body}</p>
@@ -45,13 +45,13 @@ const Posts = () => {
       {/* Pagination */}
       <div className="flex justify-end w-full gap-2 mt-4" onClickCapture={handleChangePage}>
         {
-          [...new Array(posts?.pageTotal).keys()].map(item => {
+          [...new Array(postsQuery?.pageTotal).keys()].map(item => {
             return (
               <button
                 className={
                   cx(
                     "w-8 h-8 leading-8 text-center border border-solid shadow-md hover:border-sky-500 hover:text-sky-500",
-                    posts?.current === item + 1 ? "border-sky-500 text-sky-500" : ""
+                    postsQuery?.current === item + 1 ? "border-sky-500 text-sky-500" : ""
                   )
                 }
                 key={item}

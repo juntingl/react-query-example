@@ -1,6 +1,7 @@
 import { sleep } from '@/utils/utilities';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import { useEffect, useReducer } from 'react';
 
 /**
  * 分页逻辑
@@ -38,10 +39,29 @@ export const fetchPosts = async (args: any) => {
 }
 
 const usePosts = (args?: PostsArgs) => {
-  return useQuery({
-    queryKey: ["posts", args],
-    queryFn: ({ queryKey: [_, reqArgs]}) => fetchPosts(reqArgs)
-  })
+  const [state, setState] = useReducer((_: any, action: any) => action, {
+    isLoading: true,
+  });
+
+  const fetch = async () => {
+    setState({ isLoading: true })
+    try {
+      const data = await axios.get("/api/posts").then(res => res.data);
+      setState({ isSuccess: false, data })
+    } catch(error) {
+      setState({ isError: true, error })
+    }
+  };
+
+  // 保证只执行一次，依赖为空
+  useEffect(() => {
+    fetch()
+  }, [])
+
+  return {
+    ...state,
+    refetch: fetch
+  }
 };
 
 export default usePosts;

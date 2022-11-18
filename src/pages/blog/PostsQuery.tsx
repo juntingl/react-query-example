@@ -1,5 +1,5 @@
 import { Loader, PostStyles } from "@/components/styled";
-import usePosts, { PostsArgs } from "@/hooks/usePosts";
+import usePosts, { PostsArgs } from "@/hooks-rq/usePosts";
 import { cx } from "@emotion/css";
 
 const initialState: PostsArgs = {

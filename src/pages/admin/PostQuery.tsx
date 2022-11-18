@@ -1,8 +1,8 @@
 import { Link, useNavigate, useParams } from 'react-router-dom'
 
 import useDeletePost from '@/hooks/useDeletePost'
-import usePost from '@/hooks/usePost'
-import useSavePost from '@/hooks/useSavePost'
+import usePost from '@/hooks-rq/usePost'
+import useSavePost from '@/hooks-rq/useSavePost'
 
 import Button from '@/components/Button'
 import PostForm from '@/components/PostForm'
@@ -34,10 +34,10 @@ export default function AdminPostQuery () {
         </span>
       ) : (
         <div>
-          <div className="flex items-center w-full">
+          <div className="flex items-center w-full gap-4">
             <h3>{postQuery.data.title}</h3>
             <div>
-              <Link to={`/posts/${postQuery.data.id}`}>View Post</Link>
+              <Link to={`/posts/${postQuery.data.id}`} className="text-blue-500 hover:underline">View Post</Link>
             </div>
 
             <Button

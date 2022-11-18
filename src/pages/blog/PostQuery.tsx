@@ -1,5 +1,5 @@
-import usePost from '@/hooks/usePost';
 import { useParams } from 'react-router-dom'
+import usePost from '@/hooks-rq/usePost';
 
 const PostQuery = () => {
   const { postId } = useParams();

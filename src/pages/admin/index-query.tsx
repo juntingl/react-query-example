@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 import PostForm from '@/components/PostForm';
 import { Loader } from '@/components/styled';
 
-import usePosts from '@/hooks/usePosts';
-import useCreatePost from '@/hooks/useCreatePost';
+import usePosts from '@/hooks-rq/usePosts';
+import useCreatePost from '@/hooks-rq/useCreatePost';
 
 export default function AdminPostsQuery() {
   const { data: posts, isLoading, refetch } = usePosts();
