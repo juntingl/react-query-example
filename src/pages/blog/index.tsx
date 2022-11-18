@@ -1,35 +1,37 @@
 import { Loader, PostStyles } from "@/components/styled";
 import usePosts, { PostsArgs } from "@/hooks/usePosts";
+import { cx } from "@emotion/css";
 import { css } from "@emotion/react";
 
 const initialState: PostsArgs = {
   current: 1,
-  pageSize: 50
+  pageSize: 12
 }
 
 const Posts = () => {
   const { data: posts, isLoading } = usePosts(initialState);
 
-  // const handleChangePage = (e: React.BaseSyntheticEvent) => {
-  //   e.preventDefault();
-  // }
+  const handleChangePage = (e: React.BaseSyntheticEvent) => {
+    e.preventDefault();
+    console.log(e.target.innerText);
+  }
 
   return (
     <section>
       {/* Posts */}
       <div
-        // className="grid grid-cols-3 gap-4 auto-rows-fr"
-        css={css`
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 1rem;
-        `}
+        className="grid grid-cols-3 gap-4 auto-rows-fr"
+        // css={css`
+        //   display: grid;
+        //   grid-template-columns: repeat(3, 1fr);
+        //   gap: 1rem;
+        // `}
       >
         {
             isLoading ? (
-            <span>
-              <Loader /> Loading...
-            </span>
+            <div className="flex items-center">
+              <Loader /> <span className="ml-2">Loading...</span>
+            </div>
           ) : (
             posts?.data.map((post: any) => (
               <PostStyles to={`/posts/${post.id}`} key={post.id} className="rounded-md shadow-md max-h-40">
@@ -41,7 +43,7 @@ const Posts = () => {
         }
       </div>
       {/* Pagination */}
-      {/* <div className="flex justify-end w-full gap-2 mt-4" onClickCapture={handleChangePage}>
+      <div className="flex justify-end w-full gap-2 mt-4" onClickCapture={handleChangePage}>
         {
           [...new Array(posts?.pageTotal).keys()].map(item => {
             return (
@@ -59,7 +61,7 @@ const Posts = () => {
             )
           })
         }
-      </div> */}
+      </div>
     </section>
   );
 };
