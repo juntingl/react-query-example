@@ -29,13 +29,16 @@ export const PostStyles = styled(Link)`
   padding: 1rem;
   color: inherit;
 
+  h3 {
+    overflow: hidden;
+  }
+
   :hover {
     text-decoration: none;
     h3 {
       text-decoration: underline;
     }
   }
-
 `;
 
 const rotate = keyframes`

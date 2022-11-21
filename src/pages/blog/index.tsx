@@ -37,7 +37,7 @@ const Posts = () => {
           ) : (
             posts?.data.map((post: any) => (
               <PostStyles to={`/posts/${post.id}`} key={post.id} className="rounded-md shadow-md max-h-40">
-                <h3 className="text-lg font-bold">{post.title}</h3>
+                <h3 className="inline-block overflow-hidden text-lg font-bold m-ellipsis">{post.title}</h3>
                 <p className="inline-block overflow-hidden m-ellipsis">{post.body}</p>
               </PostStyles>
             ))
