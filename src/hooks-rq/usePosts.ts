@@ -44,10 +44,7 @@ export const fetchPosts = async (args: any) => {
 }
 
 const usePosts = (args?: PostsArgs) => {
-  return useQuery({
-    queryKey: ["posts", args],
-    queryFn: ({ queryKey: [_, reqArgs]}) => fetchPosts(reqArgs)
-  })
+  return useQuery(["postId", args], () => fetchPosts(args))
 };
 
 export default usePosts;
