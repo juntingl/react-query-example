@@ -7,7 +7,7 @@
   "main": "index.ts",
   "scripts": {
     "mock:server": "cross-env json-server --watch server/db.json",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.config.js",
+    "dev": "npm run mock:server & cross-env NODE_ENV=development webpack-dev-server --config build/webpack.config.js",
     "build": "cross-env NODE_ENV=production webpack --config build/webpack.config.js"
   },
   "keywords": [
