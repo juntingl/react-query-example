@@ -6,6 +6,7 @@ import { Loader } from '@/components/styled';
 
 import usePosts from '@/hooks/usePosts';
 import useCreatePost from '@/hooks/useCreatePost';
+import { css } from '@emotion/react';
 
 export default function Posts() {
   const { data: posts, isLoading, isError, error, refetch } = usePosts();
@@ -39,9 +40,14 @@ export default function Posts() {
         )}
       </div>
 
-      <div className='flex-1 p-4'>
+      <div
+        className='p-4'
+        css={css`
+          flex: 1 0 180px;
+        `}
+      >
         <h3 className="p-4 pl-0 text-xl font-bold">Create New Post</h3>
-        <div>
+        <div className="w-full">
           <PostForm
             onSubmit={onSubmit}
             clearOnSubmit={true}
